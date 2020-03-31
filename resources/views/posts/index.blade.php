@@ -25,10 +25,14 @@
                     <td>{{$post->created_at}}</td>
                     <td>{{$post->description}}</td>
                     <td>
-                        <a href="{{route('posts.show',['post'=>$post->id])}}" class="btn btn-primary">View</a>
-                        <a href="{{route('posts.edit',['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
-                        
-                        <a href="{{route('posts.destroy',['post'=>$post->id])}}" value="Delete" class="btn btn-primary">Delete</a>
+                        <form method="POST" action="{{route('posts.destroy',[$post->id])}}">
+                            <a href="{{route('posts.show',['post'=>$post->id])}}" class="btn btn-primary">View</a>
+                            <a href="{{route('posts.edit',['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-primary" type="submit">Delete</button>
+                            <!-- <a href=""value="Delete" class="btn btn-primary">Delete</a> -->
+                        </form>
                     </td>
                 </tr>
                @endforeach

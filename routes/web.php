@@ -28,4 +28,4 @@ Route::get('/posts/{post}/edit', 'postController@edit')->name('posts.edit');
 
 Route::patch('/posts/{post}', 'postController@update')->name('posts.update');
 
-Route::get('/posts/{post}', 'postController@destroy')->name('posts.destroy');
+Route::delete('/posts/{post}', 'postController@destroy')->name('posts.destroy');
