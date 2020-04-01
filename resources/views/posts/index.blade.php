@@ -30,7 +30,7 @@
                             <a href="{{route('posts.edit',['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-primary" type="submit">Delete</button>
+                            <button class="btn btn-primary" type="submit" on_click="confirm('are you sure you want to delete this post?')">Delete</button>
                             <!-- <a href=""value="Delete" class="btn btn-primary">Delete</a> -->
                         </form>
                     </td>
