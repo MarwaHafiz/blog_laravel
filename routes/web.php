@@ -16,16 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/posts', 'postController@index')->name('posts.index');
 
-Route::get('/posts/create', 'postController@create')->name('posts.create');
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/posts', 'postController@index')->name('posts.index');
 
-Route::post('/posts', 'postController@store')->name('posts.store');
+    Route::get('/posts/create', 'postController@create')->name('posts.create');
 
-Route::get('/posts/{post}', 'postController@show')->name('posts.show');
+    Route::post('/posts', 'postController@store')->name('posts.store');
 
-Route::get('/posts/{post}/edit', 'postController@edit')->name('posts.edit');
+    Route::get('/posts/{post}', 'postController@show')->name('posts.show');
 
-Route::patch('/posts/{post}', 'postController@update')->name('posts.update');
+    Route::get('/posts/{post}/edit', 'postController@edit')->name('posts.edit');
 
-Route::delete('/posts/{post}', 'postController@destroy')->name('posts.destroy');
+    Route::patch('/posts/{post}', 'postController@update')->name('posts.update');
+
+    Route::delete('/posts/{post}', 'postController@destroy')->name('posts.destroy');
+
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -3,6 +3,15 @@
   <h2>Create Page</h2>
     <div class="container">
         <form method="post" action="{{route('posts.store')}}"> 
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Title</label>

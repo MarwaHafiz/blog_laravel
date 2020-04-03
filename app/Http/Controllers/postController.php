@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Http\Requests\PostRequest;
 
 class postController extends Controller
 {
@@ -34,9 +35,7 @@ class postController extends Controller
             'users' => $users,
         ]);
     }
-    public function store(){
-        
-        $request =request();
+    public function store(PostRequest $request){
         
         Post::create([
             'title'=>$request->title,
@@ -44,6 +43,8 @@ class postController extends Controller
             'user_id' => $request->user_id,
         ]);
         return redirect()->route('posts.index');
+        
+        
     }
     public function edit(){
         $request= request();
